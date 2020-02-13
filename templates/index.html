@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Hey</title>
+{% endblock %}
+
+{% block body %}
+
+<h1>Enter Some Data</h1>
+
+<a href="/data">See data</a> | <a href="/">Add data</a> | <a href="/delete page">Delete</a>
+<br><br>
+
+<form action="/add" method="post">
+    <label for="user">Enter User</label>
+    <input type="text" name="user" id="user" tabindex="1">
+    <br><br>
+    <label for="location">Enter Location</label>
+    <input type="text" name="location" id="location" tabindex="2">
+    <br><br>
+    <input type="submit" value="SUBMIT">
+</form>
+
+{% endblock %}

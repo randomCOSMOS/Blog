@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<title>Data</title>
+{% endblock %}
+
+
+{% block body %}
+
+<h1>DATA</h1>
+
+<a href="/data">See data</a> | <a href="/">Add data</a> | <a href="/delete page">Delete</a>
+<br><br>
+
+{% for user in users %}
+<h3>ID: {{ user.id }}</h3>
+<h3>User: {{ user.name }}</h3>
+<h3>Location: {{ user.location }}</h3>
+<hr>
+{% endfor %}
+
+{% endblock %}
