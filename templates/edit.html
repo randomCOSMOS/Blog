@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
+<title>Edit</title>
+{% endblock %}
+
+
+{% block body %}
+
+<form action="/edit/{{post.id}}" method="post">
+    <label for="heading">Heading: </label>
+    <input type="text" name="heading" id="heading" tabindex="1" value="{{post.heading}}">
+
+    <label for="subtitle">Subtitle:</label>
+    <input type="text" name="subtitle" id="subtitle" tabindex="2" value="{{post.subtitle}}">
+
+    <label for="article">Article:</label>
+    <textarea name="article" id="article" tabindex="3"></textarea>
+
+    <label for="author">Author:</label>
+    <input type="text" name="author" id="author" tabindex="4" value="{{post.author}}">
+    <br>
+    <input type="submit" value="Change">
+</form>
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+    $('textarea').text('{{post.article}}')
+</script>
+
+{% endblock %}

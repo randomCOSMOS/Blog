@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+<title>Home Page</title>
+{% endblock %}
+
+{% block body %}
+
+<h1>All Blog Posts</h1>
+
+{% if posts|length < 1 %}
+<h2>Sorry no posts. 😔</h2>
+{% endif %}
+
+{% for post in posts %}
+<div class="post">
+    <a href="/article/{{ post.id }}">
+        <h2>{{ post.heading }}</h2>
+    </a>
+    <h3>{{ post.subtitle }}</h3>
+    <p>Written by <b>{{ post.author }}</b> on {{ post.datetime.date() }}</p>
+    <hr>
+</div>
+{% endfor %}
+
+{% endblock %}

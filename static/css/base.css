@@ -1,0 +1,13 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+nav div{
+    display: flex;
+    align-items: center;
+}
+
+nav a:not(:last-of-type){
+    margin-right: 10px;
+}

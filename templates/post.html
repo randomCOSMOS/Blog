@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/post.css')}}">
+<title>Add your post</title>
+{% endblock %}
+
+
+{% block body %}
+
+<h1>Write your article</h1>
+
+<form action="/post" method="post">
+    <label for="heading">Heading: </label>
+    <input type="text" name="heading" id="heading" tabindex="1">
+
+    <label for="subtitle">Subtitle:</label>
+    <input type="text" name="subtitle" id="subtitle" tabindex="2">
+    
+    <label for="article">Article:</label>
+    <textarea name="article" id="article" tabindex="3"></textarea>
+
+    <label for="author">Author:</label>
+    <input type="text" name="author" id="author" tabindex="4">
+    <br>
+    <input type="submit" value="SUBMIT">
+</form>
+
+{% endblock %}

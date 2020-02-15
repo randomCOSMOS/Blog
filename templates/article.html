@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/article.css')}}">
+<title>Article</title>
+{% endblock %}
+
+
+{% block body %}
+
+{{ post.article }}
+
+{% endblock %}

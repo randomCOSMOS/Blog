@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename = 'css/manage.css')}}">
+<title>Manage your posts</title>
+{% endblock %}
+
+
+{% block body %}
+
+<h1>Mange your posts</h1>
+
+{% if posts|length < 1 %}
+<h2>You currently don't have any post. 😟</h2>
+{% endif %}
+
+{% if posts %}
+<table>
+    <tr>
+        <th>Topic</th>
+        <th>Date Created</th>
+        <th>Action</th>
+    </tr>
+    {% for post in posts %}
+    <tr>
+        <td>{{ post.heading }}</td>
+        <td>{{ post.datetime.date() }}</td>
+        <td>
+            <a href="/delete/{{ post.id }}">Remove</a>
+            <br>
+            <a href="/edit/{{ post.id }}">Edit</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+<p>{{ error }}</p>
+
+{% endblock %}
