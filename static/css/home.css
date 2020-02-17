@@ -1,8 +1,44 @@
-.post a{
-    color: black;
-    text-decoration: none;
+header {
+    background-color: #98878f;
+    text-align: center;
+    padding: 15vh 1rem;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
 }
 
-.post a:hover{
-    text-decoration: underline;
+.post{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post a{
+    text-decoration: none;
+    color: black;
+}
+
+.preview{
+    width: 80vw;
+    text-align: center;
+    border-radius: 20px;
+    margin: 20px 0px;
+    transition: 0.5s;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.preview:hover{
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
+}
+
+.preview h2{
+    font-size: 2rem;
+}
+
+.preview h3{
+    font-size: 1.5rem;
+}
+
+.preview p{
+    font-size: 1rem;
 }

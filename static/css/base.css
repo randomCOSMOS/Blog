@@ -1,13 +1,88 @@
-nav{
+body {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
     display: flex;
     justify-content: space-between;
+    background-color: #494e6b;
+    padding: 0 10px;
 }
 
-nav div{
+nav h1 {
+    margin: 5px 0px;
+    font-size: 2rem;
+    font-family: Broadway;
+    color: #192231;
+}
+
+nav div {
+    right: -100vw;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    width: 40vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.95);
+    transition: 0.5s;
 }
 
-nav a:not(:last-of-type){
-    margin-right: 10px;
+nav div h2{
+    font-size: 1.5rem;
+    text-align: center;
+    color: white;
+}
+
+nav div a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 10px 5px;
+}
+
+nav div a:hover {
+    background-color: rgba(0,0,0,1);
+}
+
+@media only screen and (min-width: 650px){
+    nav div h2{
+        display: none;
+    }
+
+    nav div {
+        all: unset;
+        display: flex;
+        align-items: center;
+    }
+
+    nav div a{
+        color: black;
+    }
+
+    nav div a:hover{
+        background: none;
+        text-decoration: underline;
+    }
+}
+
+@media only screen and (min-width: 900px){
+    nav div a:not(:last-of-type){
+        margin-right: 20px;
+    }
+}
+
+@media only screen and (min-width: 1250px){
+    nav{
+        padding: 0px 25px;
+    }
+
+    nav h1{
+        font-size: 2.5rem;
+    }
+
+    nav div a{
+        font-size: 1.4rem;
+    }
 }

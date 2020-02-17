@@ -6,22 +6,27 @@
 {% endblock %}
 
 {% block body %}
-
-<h1>All Blog Posts</h1>
+<header>
+    <h1>All Blog Posts</h1>
+    <p>This is the home page you will be able to see all the blog posts here.</p>
+</header>
 
 {% if posts|length < 1 %}
 <h2>Sorry no posts. 😔</h2>
 {% endif %}
 
-{% for post in posts %}
 <div class="post">
+    {% for post in posts %}
+
     <a href="/article/{{ post.id }}">
-        <h2>{{ post.heading }}</h2>
+        <div class="preview">
+            <h2>{{ post.heading }}</h2>
+            <h3>{{ post.subtitle }}</h3>
+            <p>Written by <b>{{ post.author }}</b> on {{ post.datetime.date() }}</p>
+        </div>
     </a>
-    <h3>{{ post.subtitle }}</h3>
-    <p>Written by <b>{{ post.author }}</b> on {{ post.datetime.date() }}</p>
-    <hr>
+
+    {% endfor %}
 </div>
-{% endfor %}
 
 {% endblock %}

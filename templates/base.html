@@ -13,14 +13,16 @@
     <nav>
         <h1>Blog</h1>
         <div>
+            <h2>Navigation</h2>
             <a href="/">Home</a>
-            <a href="/post">Add your post</a>
+            <a href="/post">Add post</a>
             <a href="/manage">Manage</a>
         </div>
     </nav>
     {% block body %}{% endblock %}
 
     <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='js/nav.js')}}"></script>
     {% block js %}{% endblock %}
 </body>
 
