@@ -7,22 +7,38 @@
 
 {% block body %}
 <header>
-    <h1>All Blog Posts</h1>
-    <p>This is the home page you will be able to see all the blog posts here.</p>
+    <img src="{{url_for('static', filename='images/blog.jpg')}}" alt="BLOG">
+    <div>
+        <h1>Blog Posts</h1>
+        <p>Check out all the posts by our various bloggers.</p>
+    </div>
 </header>
 
 {% if posts|length < 1 %}
 <h2>Sorry no posts. 😔</h2>
 {% endif %}
 
+<div class="latest-post">
+    <a href="/article/{{latest_post.id}}">
+        <p>FEATURED</p>
+        <p>{{ latest_post.datetime.strftime('%B %d, %Y') }}</p>
+        <h2>{{ latest_post.heading }}</h2>
+        <hr>
+        <article>{{ latest_post.article }}</article>
+        <address>By {{ latest_post.author }}</address>
+    </a>
+</div>
+
 <div class="post">
+    <p>Latest posts</p>
     {% for post in posts %}
 
     <a href="/article/{{ post.id }}">
         <div class="preview">
+            <p>{{ post.datetime.strftime('%B %d, %Y') }}</p>
             <h2>{{ post.heading }}</h2>
             <h3>{{ post.subtitle }}</h3>
-            <p>Written by <b>{{ post.author }}</b> on {{ post.datetime.date() }}</p>
+            <cite>By <b>{{ post.author }}</b></cite>
         </div>
     </a>
 

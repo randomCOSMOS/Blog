@@ -1,44 +1,116 @@
-header {
-    background-color: #98878f;
+body{
+  background-color: #01040D;
+}
+
+header{
+    position: relative;
+}
+
+header img{
+    width: 100vw;
+    height: auto;
+    filter: opacity(50%);
+}
+
+header div{
+    position: absolute;
+    width: 100vw;
+    top: 10%;
     text-align: center;
-    padding: 15vh 1rem;
     color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
 }
 
-.post{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+header div h1{
+    font-size: 4rem;
+    margin: 0px auto 10px auto;
 }
 
-.post a{
-    text-decoration: none;
-    color: black;
-}
-
-.preview{
-    width: 80vw;
-    text-align: center;
-    border-radius: 20px;
-    margin: 20px 0px;
-    transition: 0.5s;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
-}
-
-.preview:hover{
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.8);
-}
-
-.preview h2{
-    font-size: 2rem;
-}
-
-.preview h3{
+header div p{
+    max-width: 88vw;
+    margin: 0px auto;
     font-size: 1.5rem;
 }
 
-.preview p{
+.latest-post{
+    margin: 50px 0px;
+    width: calc(100vw - 40px);
+    padding: 0px 20px;
+    font-family: 'Leelawadee UI';
+}
+
+.latest-post a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.latest-post p{
+    font-weight: bold;
+    color: #8a8c82;
+    margin: 5px 0px;
+    font-size: 0.8rem;
+}
+
+.latest-post h2{
+    margin: 5px 0px 0px 0px;
+    font-size: 1.5rem;
+}
+
+hr{
+    width: 10px;
+    margin-left: 0px;
+    color: white;
+}
+
+.latest-post article{
+    word-wrap: break-word;
+}
+
+.latest-post address{
+    margin-top: 20px;
+}
+
+.post p{
+    font-weight: bold;
+    color: #8a8c82;
+    margin: 5px 0px;
     font-size: 1rem;
+    font-family: 'Leelawadee UI';
+    margin: 10px 10px;
+}
+
+.post a{
+    color: white;
+    text-decoration: none;
+    font-family: lato;
+    display: flex;
+    justify-content: center;
+}
+
+.preview{
+    text-align: left;
+    background-color: #006a85;
+    width: 80vw;
+    padding: 25px;
+    margin-bottom: 50px;
+}
+
+.preview p{
+    opacity: 0.6;
+    margin: 0px 0px 10px 0px;
+}
+
+.preview h2{
+    margin: 0px 0px;
+}
+
+.preview h3{
+    margin: 0px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.preview cite{
+    opacity: 0.6;
 }

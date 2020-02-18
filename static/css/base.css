@@ -6,15 +6,25 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: #494e6b;
-    padding: 0 10px;
+    background-color: #01040D;
+    padding: 5px 0px 5px 10px;
+    height: 40px;
 }
 
-nav h1 {
-    margin: 5px 0px;
-    font-size: 2rem;
-    font-family: Broadway;
-    color: #192231;
+nav img{
+    height: 40px;
+}
+
+.hamburger {
+    z-index: 2566;
+    padding: 0px !important;
+}
+
+.hamburger-inner,
+.hamburger-inner::after,
+.hamburger-inner::before {
+    background-color: #707070 !important;
+    width: 30px !important;
 }
 
 nav div {
@@ -24,13 +34,18 @@ nav div {
     position: fixed;
     width: 40vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.95);
+    background-color: black;
     transition: 0.5s;
+    z-index: 2300;
 }
 
-nav div h2{
+.show {
+    right: 0vw !important;
+}
+
+nav div h2 {
     font-size: 1.5rem;
-    text-align: center;
+    /* text-align: center; */
     color: white;
 }
 
@@ -43,11 +58,15 @@ nav div a {
 }
 
 nav div a:hover {
-    background-color: rgba(0,0,0,1);
+    background-color: rgba(0, 0, 0, 1);
 }
 
-@media only screen and (min-width: 650px){
-    nav div h2{
+@media only screen and (min-width: 650px) {
+    .hamburger {
+        display: none !important;
+    }
+
+    nav div h2 {
         display: none;
     }
 
@@ -57,32 +76,32 @@ nav div a:hover {
         align-items: center;
     }
 
-    nav div a{
-        color: black;
+    nav div a {
+        color: white;
     }
 
-    nav div a:hover{
+    nav div a:hover {
         background: none;
         text-decoration: underline;
     }
 }
 
-@media only screen and (min-width: 900px){
-    nav div a:not(:last-of-type){
+@media only screen and (min-width: 900px) {
+    nav div a:not(:last-of-type) {
         margin-right: 20px;
     }
 }
 
-@media only screen and (min-width: 1250px){
-    nav{
+@media only screen and (min-width: 1250px) {
+    nav {
         padding: 0px 25px;
     }
 
-    nav h1{
+    nav h1 {
         font-size: 2.5rem;
     }
 
-    nav div a{
+    nav div a {
         font-size: 1.4rem;
     }
 }

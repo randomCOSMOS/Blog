@@ -29,8 +29,9 @@ class Post(db.Model):
 # home page
 @app.route('/')
 def home():
-    posts = Post.query.all()
-    return render_template('home.html', posts=posts)
+    posts = Post.query.order_by(Post.id.desc()).all()
+    latest_post = posts[0]
+    return render_template('home.html', posts=posts, latest_post=latest_post)
 
 
 # posting page
