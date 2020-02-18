@@ -1,0 +1,17 @@
+#body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    font-size: 3rem;
+}
+
+table{
+    text-align: left;
+}
+
+tr td:first-child{
+    width: 400px
+}

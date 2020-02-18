@@ -19,7 +19,9 @@
             <a href="/manage">Manage</a>
         </div>
     </nav>
-    {% block body %}{% endblock %}
+    <div id="body">
+        {% block body %}{% endblock %}
+    </div>
 
     <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
     <script src="{{url_for('static', filename='js/nav.js')}}"></script>
