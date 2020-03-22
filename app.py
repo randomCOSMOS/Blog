@@ -28,9 +28,11 @@ cur = con.cursor()
 # home page
 @app.route('/')
 def home():
-    cur.execute('select * from posts order by id desc')
+    # cur.execute('select * from posts order by id desc')
 
-    posts = cur.fetchall()
+    # posts = cur.fetchall()
+    posts = [(3, 'hi', None, None, None, 2020, 3, 22),
+             (4, ',hkjhkjh', 'khkjhkjhk', 'jhkjhkjhkjh', 'kjhkjhkjhk', 2020, 3, 22)]
     latest_post = posts[0]
     return render_template('home.html', posts=posts, latest_post=latest_post)
 
