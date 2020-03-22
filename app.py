@@ -31,7 +31,10 @@ def home():
     cur.execute('select * from posts')
 
     posts = cur.fetchall()
-    latest_post = posts[0]
+    if posts:
+        latest_post = posts[-1]
+    else:
+        latest_post = []
     return render_template('home.html', posts=posts, latest_post=latest_post)
 
 
@@ -62,8 +65,6 @@ def post():
         cur.execute('insert into posts ("heading", "subtitle", "article", "author") values (%s, %s, %s, %s)',
                     (heading, subtitle, article, author))
         con.commit()
-        cur.execute('select * from posts')
-        rows = cur.fetchall()
 
         return redirect('/post')
 
@@ -80,37 +81,37 @@ def ok(id):
 # manage page
 @app.route('/manage')
 def manage():
-    posts = Post.query.all()
+    cur.execute('select * from posts')
+    posts = cur.fetchall()
     return render_template('manage.html', posts=posts)
 
 
 # delete function
 @app.route('/delete/<id>')
 def delete(id):
-    delete_post = Post.query.get(id)
-    if delete_post is None:
-        error = "Can't find post with id {}".format(id)
-        return render_template('manage.html', error=error)
-    else:
-        db.session.delete(delete_post)
-        db.session.commit()
-        return redirect('/manage')
+    cur.execute('delete from posts where id={}'.format(id))
+    con.commit()
+    return redirect('/manage')
 
 
 # edit function
 @app.route('/edit/<id>', methods=['POST', 'GET'])
 def edit(id):
-    edit_post = Post.query.get(id)
+    cur.execute('select * from posts where id=%s', (id))
+    edit_post = cur.fetchall()[0]
     if request.method == 'GET':
         return render_template('edit.html', post=edit_post)
     else:
         data = request.form
 
-        edit_post.heading = data['heading']
-        edit_post.subtitle = data['subtitle']
-        edit_post.article = data['article']
-        edit_post.author = data['author']
-        db.session.commit()
+        heading = data['heading']
+        subtitle = data['subtitle']
+        article = data['article']
+        author = data['author']
+
+        cur.execute('update posts set heading=%s, subtitle=%s, article=%s, author=%s where id=%s',
+                    (heading, subtitle, article, author, id))
+        con.commit()
         return redirect('/manage')
 
 

@@ -8,18 +8,25 @@
 
 {% block body %}
 
-<form action="/edit/{{post.id}}" method="post">
+{% set id = post[0] %}
+{% set heading = post[1] %}
+{% set subtitle = post[2] %}
+{% set article = post[3] %}
+{% set author = post[4] %}
+{% set date = post[5] %}
+
+<form action="/edit/{{id}}" method="post">
     <label for="heading">Heading: </label>
-    <input type="text" name="heading" id="heading" tabindex="1" value="{{post.heading}}">
+    <input type="text" name="heading" id="heading" tabindex="1" value="{{heading}}">
 
     <label for="subtitle">Subtitle:</label>
-    <input type="text" name="subtitle" id="subtitle" tabindex="2" value="{{post.subtitle}}">
+    <input type="text" name="subtitle" id="subtitle" tabindex="2" value="{{subtitle}}">
 
     <label for="article">Article:</label>
     <textarea name="article" id="article" tabindex="3"></textarea>
 
     <label for="author">Author:</label>
-    <input type="text" name="author" id="author" tabindex="4" value="{{post.author}}">
+    <input type="text" name="author" id="author" tabindex="4" value="{{author}}">
     <br>
     <input type="submit" value="Change">
 </form>
@@ -29,7 +36,7 @@
 {% block js %}
 
 <script>
-    $('textarea').text('{{post.article}}')
+    $('textarea').text('{{ post[3] }}')
 </script>
 
 {% endblock %}

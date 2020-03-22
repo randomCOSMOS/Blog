@@ -23,13 +23,17 @@
         <th>Action</th>
     </tr>
     {% for post in posts %}
+
+    {% set id = post[0] %}
+    {% set heading = post[1] %}
+    {% set date = post[5] %}
     <tr>
-        <td>{{ post.heading }}</td>
-        <td>{{ post.datetime.date() }}</td>
+        <td>{{ heading }}</td>
+        <td>{{ date }}</td>
         <td>
-            <a href="/delete/{{ post.id }}">Remove</a>
+            <a href="/delete/{{ id }}">Remove</a>
             <br>
-            <a href="/edit/{{ post.id }}">Edit</a>
+            <a href="/edit/{{ id }}">Edit</a>
         </td>
     </tr>
     {% endfor %}

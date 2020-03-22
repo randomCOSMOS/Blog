@@ -1,77 +1,87 @@
-body{
-  background-color: #01040D;
+body {
+    background-color: #01040D;
 }
 
-header{
+header {
     position: relative;
+    background-image: url("../images/BLOG.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 60vh;
+    display: flex;
+    align-items: center;
 }
 
-header img{
+header img {
     width: 100vw;
-    height: auto;
+    height: 60vh;
     filter: opacity(50%);
 }
 
-header div{
-    position: absolute;
+header div {
     width: 100vw;
-    top: 10%;
-    text-align: center;
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
+    text-align: center;
 }
 
-header div h1{
-    font-size: 4rem;
+header div h1 {
+    font-size: 8rem;
     margin: 0px auto 10px auto;
 }
 
-header div p{
+header div p {
     max-width: 88vw;
     margin: 0px auto;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
-.latest-post{
+#body > h2{
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+}
+
+.latest-post {
     margin: 50px 0px;
     width: calc(100vw - 40px);
     padding: 0px 20px;
     font-family: 'Leelawadee UI';
 }
 
-.latest-post a{
+.latest-post a {
     text-decoration: none;
     color: #ffffff;
 }
 
-.latest-post p{
+.latest-post p {
     font-weight: bold;
     color: #8a8c82;
     margin: 5px 0px;
     font-size: 0.8rem;
 }
 
-.latest-post h2{
+.latest-post h2 {
     margin: 5px 0px 0px 0px;
     font-size: 1.5rem;
 }
 
-hr{
+hr {
     width: 10px;
     margin-left: 0px;
     color: white;
 }
 
-.latest-post article{
+.latest-post article {
     word-wrap: break-word;
 }
 
-.latest-post address{
+.latest-post address {
     margin-top: 20px;
 }
 
-.post p{
+.post p {
     font-weight: bold;
     color: #8a8c82;
     margin: 5px 0px;
@@ -80,7 +90,7 @@ hr{
     margin: 10px 10px;
 }
 
-.post a{
+.post a {
     color: white;
     text-decoration: none;
     font-family: lato;
@@ -88,7 +98,7 @@ hr{
     justify-content: center;
 }
 
-.preview{
+.preview {
     text-align: left;
     background-color: #006a85;
     width: 80vw;
@@ -96,21 +106,21 @@ hr{
     margin-bottom: 50px;
 }
 
-.preview p{
+.preview p {
     opacity: 0.6;
     margin: 0px 0px 10px 0px;
 }
 
-.preview h2{
+.preview h2 {
     margin: 0px 0px;
 }
 
-.preview h3{
+.preview h3 {
     margin: 0px;
     font-size: 1rem;
     margin-bottom: 10px;
 }
 
-.preview cite{
+.preview cite {
     opacity: 0.6;
 }
