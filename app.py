@@ -12,7 +12,7 @@ load_dotenv(dotenv_path)
 
 if os.environ.get('DATABASE_URL'):
     DATABASE_URL = os.environ['DATABASE_URL']
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    con = psycopg2.connect(DATABASE_URL, sslmode='require')
 else:
     con = psycopg2.connect(
         host=os.environ.get('host'),
