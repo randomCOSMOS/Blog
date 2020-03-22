@@ -1,8 +1,8 @@
 # Blog
 A flask blog app
 
-#Initilize
+# Initilize
 1) Create virtual environment.
 2) Downlaod libraries from requirements.txt;
 
-#Then run app.py
+# Then run app.py
