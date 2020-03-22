@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request, redirect
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 from dotenv import load_dotenv
 from os.path import join, dirname
 import psycopg2
@@ -8,11 +6,7 @@ import os
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-
-db = SQLAlchemy(app)
-
+# connecting to database
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
@@ -31,26 +25,12 @@ else:
 cur = con.cursor()
 
 
-# table
-class Post(db.Model):
-    def __init__(self, heading, subtitle, article, author):
-        self.heading = heading
-        self.subtitle = subtitle
-        self.article = article
-        self.author = author
-
-    id = db.Column(db.Integer, primary_key=True)
-    heading = db.Column(db.String(50))
-    subtitle = db.Column(db.String(50))
-    article = db.Column(db.String(100))
-    author = db.Column(db.String(20))
-    datetime = db.Column(db.DateTime, default=datetime.utcnow())
-
-
 # home page
 @app.route('/')
 def home():
-    posts = Post.query.order_by(Post.id.desc()).all()
+    cur.execute('select * from posts order by id desc')
+
+    posts = cur.fetchall()
     latest_post = posts[0]
     return render_template('home.html', posts=posts, latest_post=latest_post)
 
@@ -61,6 +41,18 @@ def post():
     if request.method == 'GET':
         return render_template('post.html')
     else:
+        post_id = []
+        cur.execute('select id from posts')
+        for id in cur.fetchall():
+            post_id.append(id[0])
+
+        if post_id:
+            max_id = max(post_id)
+        else:
+            max_id = 0
+
+        cur.execute('alter sequence posts_id_seq restart with {}'.format(max_id + 1))
+
         data = request.form
         heading = data['heading']
         subtitle = data['subtitle']
@@ -72,11 +64,6 @@ def post():
         con.commit()
         cur.execute('select * from posts')
         rows = cur.fetchall()
-        print(rows)
-
-        new_post = Post(heading, subtitle, article, author)
-        db.session.add(new_post)
-        db.session.commit()
 
         return redirect('/post')
 
@@ -84,8 +71,10 @@ def post():
 # article page
 @app.route('/article/<id>')
 def ok(id):
-    this_post = Post.query.get(id)
-    return render_template('article.html', post=this_post)
+    cur.execute('select article from posts where id={}'.format(id))
+    article = cur.fetchall()
+
+    return render_template('article.html', article=article[0][0])
 
 
 # manage page
@@ -108,6 +97,7 @@ def delete(id):
         return redirect('/manage')
 
 
+# edit function
 @app.route('/edit/<id>', methods=['POST', 'GET'])
 def edit(id):
     edit_post = Post.query.get(id)

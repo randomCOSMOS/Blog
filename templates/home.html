@@ -19,26 +19,36 @@
 {% endif %}
 
 <div class="latest-post">
+    {% set heading = latest_post[1] %}
+    {% set article = latest_post[3] %}
+    {% set author = latest_post[4] %}
+    {% set date = latest_post[5] %}
+
     <a href="/article/{{latest_post.id}}">
         <p>FEATURED</p>
-        <p>{{ latest_post.datetime.strftime('%B %d, %Y') }}</p>
-        <h2>{{ latest_post.heading }}</h2>
+        <p>{{ date }}</p>
+        <h2>{{ heading }}</h2>
         <hr>
-        <article>{{ latest_post.article }}</article>
-        <address>By {{ latest_post.author }}</address>
+        <article>{{ article }}</article>
+        <address>By {{ author }}</address>
     </a>
 </div>
 
 <div class="post">
     <p>Latest posts</p>
     {% for post in posts %}
+    {% set id = post[0] %}
+    {% set heading = post[1] %}
+    {% set subtitle = post[2] %}
+    {% set author = post[4] %}
+    {% set date = post[5] %}
 
-    <a href="/article/{{ post.id }}">
+    <a href="/article/{{ id }}">
         <div class="preview">
-            <p>{{ post.datetime.strftime('%B %d, %Y') }}</p>
-            <h2>{{ post.heading }}</h2>
-            <h3>{{ post.subtitle }}</h3>
-            <cite>By <b>{{ post.author }}</b></cite>
+            <p>{{ post[5] }}</p>
+            <h2>{{ heading }}</h2>
+            <h3>{{ subtitle }}</h3>
+            <cite>By <b>{{ author }}</b></cite>
         </div>
     </a>
 
