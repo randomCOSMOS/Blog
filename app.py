@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from dotenv import load_dotenv
+from os.path import join, dirname
+import psycopg2
+import os
 
 app = Flask(__name__)
 
@@ -8,6 +12,23 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
 db = SQLAlchemy(app)
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+if os.environ.get('DATABASE_URL'):
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+else:
+    con = psycopg2.connect(
+        host=os.environ.get('host'),
+        database=os.environ.get('database'),
+        user=os.environ.get('user'),
+        password=os.environ.get('password'),
+        port=os.environ.get('port')
+    )
+
+cur = con.cursor()
 
 
 # table
@@ -45,6 +66,13 @@ def post():
         subtitle = data['subtitle']
         article = data['article']
         author = data['author']
+
+        cur.execute('insert into posts ("heading", "subtitle", "article", "author") values (%s, %s, %s, %s)',
+                    (heading, subtitle, article, author))
+        con.commit()
+        cur.execute('select * from posts')
+        rows = cur.fetchall()
+        print(rows)
 
         new_post = Post(heading, subtitle, article, author)
         db.session.add(new_post)
