@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<style>
+    html{
+        overflow: hidden;
+    }
+
+    #body {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    h2 {
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    label {
+        color: white;
+        font-family: 'Leelawadee UI';
+    }
+
+    form {
+        padding-bottom: 50px;
+    }
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+{% if status %}
+<h2>Password incorrect</h2>
+{% else %}
+<h2>Only admin can acces this section</h2>
+
+<form action="/manage" method="post">
+    <label for="pass">Password:</label>
+    <input type="text" name="pass" id="pass">
+
+    <input type="submit" value="SUBMIT">
+</form>
+{% endif %}
+
+{% endblock %}

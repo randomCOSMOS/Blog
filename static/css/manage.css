@@ -4,14 +4,34 @@
     align-items: center;
 }
 
-h1{
+h1 {
     font-size: 3rem;
+    color: white;
 }
 
-table{
-    text-align: left;
+table {
+    text-align: center;
+    color: white;
+    border-collapse: collapse;
 }
 
-tr td:first-child{
-    width: 400px
+th {
+    border-bottom: 1px solid white;
+}
+
+th:not(:last-of-type),
+td:not(:last-of-type) {
+    border-right: 1px solid white;
+}
+
+th,td {
+    padding: 10px;
+}
+
+tr td:first-child {
+    width: 50vw;
+}
+
+tr td a {
+    color: white;
 }

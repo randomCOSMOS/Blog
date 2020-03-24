@@ -79,11 +79,20 @@ def ok(id):
 
 
 # manage page
-@app.route('/manage')
+@app.route('/manage', methods=['POST', 'GET'])
 def manage():
-    cur.execute('select * from posts')
-    posts = cur.fetchall()
-    return render_template('manage.html', posts=posts)
+    if request.method == 'GET':
+        return render_template('pass.html')
+    else:
+        data = request.form
+        password = data['pass']
+
+        if password == '33856421':
+            cur.execute('select * from posts')
+            posts = cur.fetchall()
+            return render_template('manage.html', posts=posts)
+        else:
+            return render_template('pass.html', status='incorrect')
 
 
 # delete function

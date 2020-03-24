@@ -8,14 +8,15 @@
 
 
 {% block body %}
-
-<h1>Mange your posts</h1>
+<header>
+    <h1>Mange your posts</h1>
+</header>
 
 {% if posts|length < 1 %}
 <h2>You currently don't have any post. 😟</h2>
-{% endif %}
 
-{% if posts %}
+{% else %}
+
 <table>
     <tr>
         <th>Topic</th>

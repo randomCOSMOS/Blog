@@ -1,3 +1,47 @@
-label{
+#body {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    width: 70vw;
+}
+
+label {
     display: block;
+    font-family: "Leelawadee UI";
+    color: white;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+input:not(:last-of-type),
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid var(--blue);
+    background-color: var(--grey);
+    color: white;
+    font-family: "Leelawadee UI";
+}
+
+input:last-of-type {
+    margin: 20px 100% 40px 0px;
+    background-color: var(--blue);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+input:last-of-type:hover {
+    box-shadow: 0px 0px 25px 5px rgba(24, 26, 27, 0.7);
+    background-color: var(--grey);
+    color: var(--blue);
 }

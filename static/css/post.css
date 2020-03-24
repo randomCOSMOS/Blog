@@ -41,6 +41,7 @@ label {
     color: white;
     text-align: left;
     margin-top: 20px;
+    margin-left: 5px;
 }
 
 input:not(:last-of-type),
