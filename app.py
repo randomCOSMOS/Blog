@@ -87,7 +87,7 @@ def manage():
         data = request.form
         password = data['pass']
 
-        if password == '33856421':
+        if password == os.environ.get('m_password'):
             cur.execute('select * from posts')
             posts = cur.fetchall()
             return render_template('manage.html', posts=posts)
