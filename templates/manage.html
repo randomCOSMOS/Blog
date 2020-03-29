@@ -25,16 +25,16 @@
     </tr>
     {% for post in posts %}
 
-    {% set id = post[0] %}
+    {% set id = post[0] %} 
     {% set heading = post[1] %}
     {% set date = post[5] %}
     <tr>
         <td>{{ heading }}</td>
         <td>{{ date }}</td>
         <td>
-            <a href="/delete/{{ id }}">Remove</a>
+            <a href="{{url_for('delete', id=id)}}">Remove</a>
             <br>
-            <a href="/edit/{{ id }}">Edit</a>
+            <a href="{{url_for('edit', id=id)}}">Edit</a>
         </td>
     </tr>
     {% endfor %}

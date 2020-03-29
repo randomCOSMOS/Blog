@@ -4,6 +4,12 @@
     align-items: center;
 }
 
+#body>h2{
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+}
+
 h1 {
     font-size: 3rem;
     color: white;

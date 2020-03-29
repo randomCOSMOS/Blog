@@ -38,7 +38,7 @@ header div p {
     margin: 50px 0px;
     width: calc(100vw - 40px);
     padding: 0px 20px;
-    font-family: 'Leelawadee UI';
+    font-family: 'lato';
 }
 
 .latest-post a {
@@ -77,7 +77,7 @@ hr {
     color: var(--light-grey);
     margin: 5px 0px;
     font-size: 1rem;
-    font-family: 'Leelawadee UI';
+    font-family: 'lato';
     margin: 10px 10px;
 }
 

@@ -3,7 +3,7 @@
 {% block head %}
 
 <style>
-    html{
+    html {
         overflow: hidden;
     }
 
@@ -23,7 +23,7 @@
 
     label {
         color: white;
-        font-family: 'Leelawadee UI';
+        font-family: 'lato';
     }
 
     form {
@@ -47,5 +47,13 @@
     <input type="submit" value="SUBMIT">
 </form>
 {% endif %}
+
+{% endblock %}
+
+{% block js %}
+
+<script>
+    document.getElementById('pass').focus();
+</script>
 
 {% endblock %}

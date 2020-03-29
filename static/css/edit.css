@@ -11,7 +11,7 @@ form {
 
 label {
     display: block;
-    font-family: "Leelawadee UI";
+    font-family: "lato";
     color: white;
     text-align: left;
     margin-top: 20px;
@@ -26,7 +26,7 @@ textarea {
     border: 2px solid var(--blue);
     background-color: var(--grey);
     color: white;
-    font-family: "Leelawadee UI";
+    font-family: "lato";
 }
 
 input:last-of-type {

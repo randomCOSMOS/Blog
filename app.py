@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
 from os.path import join, dirname
 import psycopg2
@@ -96,17 +96,19 @@ def manage():
 
 
 # delete function
-@app.route('/delete/<id>')
-def delete(id):
-    cur.execute('delete from posts where id={}'.format(id))
+@app.route('/delete')
+def delete():
+    id = request.args['id']
+    cur.execute('delete from posts where id=%s', id)
     con.commit()
     return redirect('/manage')
 
 
 # edit function
-@app.route('/edit/<id>', methods=['POST', 'GET'])
-def edit(id):
-    cur.execute('select * from posts where id=%s', (id))
+@app.route('/edit', methods=['POST', 'GET'])
+def edit():
+    id = request.args['id']
+    cur.execute('select * from posts where id=%s', id)
     edit_post = cur.fetchall()[0]
     if request.method == 'GET':
         return render_template('edit.html', post=edit_post)
@@ -122,6 +124,42 @@ def edit(id):
                     (heading, subtitle, article, author, id))
         con.commit()
         return redirect('/manage')
+
+
+@app.route('/sign', methods=['POST', 'GET'])
+def sign():
+    if request.method == 'GET':
+        post_id = []
+        cur.execute('select id from users')
+        for id in cur.fetchall():
+            post_id.append(id[0])
+
+        if post_id:
+            max_id = max(post_id)
+        else:
+            max_id = 0
+
+        cur.execute('alter sequence users_id_seq restart with {}'.format(max_id + 1))
+
+        return render_template('sign.html')
+    else:
+        username = request.form['username']
+        password = request.form['password']
+
+        print(username, password)
+
+        cur.execute("select * from users where name='" + username + "'")
+        if cur.fetchall():
+            return render_template('sign.html', error=True)
+        else:
+            cur.execute('insert into users (name,password) values (%s,%s)', (username, password))
+            con.commit()
+        return redirect('/')
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'GET':
+        render_template('')
 
 
 if __name__ == '__main__':

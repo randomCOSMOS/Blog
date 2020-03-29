@@ -17,44 +17,50 @@
 <h2>Sorry no posts. 😔</h2>
 
 {% else %}
-<div class="latest-post">
-    {% set id = latest_post[0] %}
-    {% set heading = latest_post[1] %}
-    {% set article = latest_post[3] %}
-    {% set author = latest_post[4] %}
-    {% set date = latest_post[5] %}
-
-    <a href="/article/{{id}}">
-        <p>FEATURED</p>
-        <p>{{ date }}</p>
-        <h2>{{ heading }}</h2>
-        <hr>
-        <article>{{ article }}</article>
-        <address>By {{ author }}</address>
-    </a>
+<div class="sidemenu">
+    
 </div>
 
-<div class="post">
-    <p>Latest posts</p>
-    {% for post in posts %}
+<div class="blog">
+    <div class="latest-post">
+        {% set id = latest_post[0] %}
+        {% set heading = latest_post[1] %}
+        {% set article = latest_post[3] %}
+        {% set author = latest_post[4] %}
+        {% set date = latest_post[5] %}
 
-    {% set id = post[0] %}
-    {% set heading = post[1] %}
-    {% set subtitle = post[2] %}
-    {% set author = post[4] %}
-    {% set date = post[5] %}
-
-    <a href="/article/{{ id }}">
-        <div class="preview">
-            <p>{{ post[5] }}</p>
+        <a href="/article/{{id}}">
+            <p>FEATURED</p>
+            <p>{{ date }}</p>
             <h2>{{ heading }}</h2>
-            <h3>{{ subtitle }}</h3>
-            <cite>By <b>{{ author }}</b></cite>
-        </div>
-    </a>
+            <hr>
+            <article>{{ article }}</article>
+            <address>By {{ author }}</address>
+        </a>
+    </div>
 
-    {% endfor %}
+    <div class="post">
+        <p>Latest posts</p>
+        {% for post in posts %}
+
+        {% set id = post[0] %}
+        {% set heading = post[1] %}
+        {% set subtitle = post[2] %}
+        {% set author = post[4] %}
+        {% set date = post[5] %}
+
+        <a href="/article/{{ id }}">
+            <div class="preview">
+                <p>{{ post[5] }}</p>
+                <h2>{{ heading }}</h2>
+                <h3>{{ subtitle }}</h3>
+                <cite>By <b>{{ author }}</b></cite>
+            </div>
+        </a>
+
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
-{% endif %}
 
 {% endblock %}

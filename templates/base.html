@@ -12,7 +12,9 @@
 
 <body>
     <nav>
-        <img src="{{url_for('static', filename='images/LOGO.svg')}}" alt="LOGO">
+        <a href="/">
+            <img src="{{url_for('static', filename='images/LOGO.svg')}}" alt="LOGO">
+        </a>
         <button class="hamburger hamburger--slider" type="button">
             <span class="hamburger-box">
                 <span class="hamburger-inner"></span>
@@ -22,9 +24,10 @@
             <h2>Navigation</h2>
             <a href="/">Home</a>
             <a href="/post">Add post</a>
-            <a href="/manage">Manage</a>
+            <a href="/sign">Sign Up</a>
         </div>
     </nav>
+    
     <div id="body">
         {% block body %}{% endblock %}
     </div>
