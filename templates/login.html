@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sign.css')}}">
+    <title>Sign Up</title>
+</head>
+
+<body>
+
+
+    <div class="illustration">
+        <h1>Log In To Continue Exploration</h1>
+        <p>Welcom Back</p>
+        <img src="{{url_for('static', filename='images/sign-in.svg')}}" alt="">
+    </div>
+    <div class="sign-up">
+        <form action="/login" method="POST">
+            <h1>Log In</h1>
+
+            <label for="username">Username</label>
+            <input type="text" oninvalid="invalid()" name="username" id="username" pattern="[a-z0-9_]+" tabindex="1"
+                autofocus required>
+            <p class="error">{{error}}</p>
+
+            <label for="password">Password</label>
+            <input type="password" minlength="5" name="password" id="password" tabindex="2" required>
+            <br>
+            <input type="submit" value="Log In" class="submit" tabindex="3">
+
+            <p>Don't have an account? <a href="/sign">Sign Up</a></p>
+        </form>
+    </div>
+
+</body>
+
+</html>

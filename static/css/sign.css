@@ -9,10 +9,14 @@ body {
     padding: 0px;
     margin: 0px;
     display: flex;
+    overflow: hidden;
 }
 
 .illustration {
     background-color: var(--dark-blue);
+    background-image: url('../images/puddle2.jpg');
+    background-position: center;
+    background-size: cover;
     width: 60vw;
     height: 100vh;
     display: flex;
@@ -38,8 +42,8 @@ body {
 }
 
 .sign-up {
-    /* background-color: var(--blue); */
-    background-image: url('../images/bg.jpg');
+    background-color: var(--blue);
+    background-image: url('../images/mountains.jpg');
     background-position: center;
     background-size: cover;
     width: 40vw;
@@ -56,7 +60,7 @@ form {
     background-color: white;
     padding: 50px;
     border-radius: 25px;
-    background-image: url('../images/pattern.jpg');
+    background-image: url('../images/cloud.jpg');
     background-position: center;
     background-size: cover;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
@@ -89,14 +93,14 @@ input:focus {
     border: 2px solid #d3d3d3;
 }
 
-.error {
+.not-valid {
     display: none;
     margin: 0px;
     color: red;
     font-size: 0.8rem;
 }
 
-.duplicate {
+.error {
     margin: 0px;
     color: red;
     font-size: 0.8rem;

@@ -6,22 +6,18 @@
 {% endblock %}
 
 {% block body %}
-<header>
-    <div>
-        <h1>Blog Posts</h1>
-        <p>Check out all the posts by our various bloggers.</p>
-    </div>
-</header>
-
-{% if posts|length < 1 %}
-<h2>Sorry no posts. 😔</h2>
-
-{% else %}
-<div class="sidemenu">
-    
-</div>
-
 <div class="blog">
+    <header>
+        <div>
+            <h1>Blog Posts</h1>
+            <p>Check out all the posts by our various bloggers.</p>
+        </div>
+    </header>
+
+    {% if posts|length < 1 %}
+    <h2>Sorry no posts. 😔</h2>
+
+    {% else %}
     <div class="latest-post">
         {% set id = latest_post[0] %}
         {% set heading = latest_post[1] %}
@@ -57,10 +53,13 @@
                 <cite>By <b>{{ author }}</b></cite>
             </div>
         </a>
-
         {% endfor %}
     </div>
+
     {% endif %}
 </div>
 
+    <!-- <div class="sidemenu">
+
+    </div> -->
 {% endblock %}

@@ -24,6 +24,9 @@ else:
 
 cur = con.cursor()
 
+loggedin = False
+name = None
+
 
 # home page
 @app.route('/')
@@ -148,18 +151,36 @@ def sign():
 
         print(username, password)
 
-        cur.execute("select * from users where name='" + username + "'")
-        if cur.fetchall():
+        cur.execute('select * from users where name=%s', [username])
+        user = cur.fetchall()
+        if user:
             return render_template('sign.html', error=True)
         else:
-            cur.execute('insert into users (name,password) values (%s,%s)', (username, password))
+            cur.execute('insert into users (name, password) values (%s,%s)', (username, password))
             con.commit()
         return redirect('/')
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET':
-        render_template('')
+        return render_template('login.html')
+    else:
+        username = request.form['username']
+        password = request.form['password']
+
+        cur.execute('select * from users where name=%s', [username])
+        user = cur.fetchall()
+
+        if user:
+            if password == user[2]:
+                loggedin = True
+                name = username
+                return redirect('/')
+            else:
+                return render_template('login.html', error='Incorrect password')
+        else:
+            return render_template('login.html', error='Can not find that')
 
 
 if __name__ == '__main__':
