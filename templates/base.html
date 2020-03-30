@@ -24,7 +24,11 @@
             <h2>Navigation</h2>
             <a href="/">Home</a>
             <a href="/post">Add post</a>
+            {% if loggedin %}
+            <a href="/manage">Manage</a>
+            {% else %}
             <a href="/sign">Sign Up</a>
+            {% endif %}
         </div>
     </nav>
     

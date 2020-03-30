@@ -11,6 +11,13 @@
 
 <body>
 
+    <div class="back">
+        <a href="/">
+            <img src="{{url_for('static', filename='images/index.png')}}" alt="arrow">
+            <p>Home</p>
+        </a>
+    </div>
+
     <div class="illustration">
         <h1>Sign Up To Express Your Thoughts</h1>
         <p>Really Appreciated</p>
@@ -21,8 +28,8 @@
             <h1>Sign Up</h1>
 
             <label for="username">Username</label>
-            <input type="text" oninvalid="invalid()" name="username" id="username" pattern="[a-z0-9_]+" tabindex="1" autofocus
-                required>
+            <input type="text" oninvalid="invalid()" name="username" id="username" pattern="[a-z0-9_]+" tabindex="1"
+                autofocus required>
             <p class="not-valid">Only use lowercase and underscore.</p>
             {% if error %}
             <p class="error">Already taken</p>

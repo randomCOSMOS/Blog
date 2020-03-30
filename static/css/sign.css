@@ -12,6 +12,22 @@ body {
     overflow: hidden;
 }
 
+.back {
+    position: absolute;
+}
+
+.back a{
+    color: white;
+    font-family: lato;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.back img{
+    width: 5%;
+}
+
 .illustration {
     background-color: var(--dark-blue);
     background-image: url('../images/puddle2.jpg');
@@ -23,6 +39,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    display: none;
 }
 
 .illustration h1 {
@@ -46,7 +63,7 @@ body {
     background-image: url('../images/mountains.jpg');
     background-position: center;
     background-size: cover;
-    width: 40vw;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -54,7 +71,7 @@ body {
 }
 
 form {
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -122,4 +139,32 @@ form a {
 
 .c-label {
     background-color: pink !important;
+}
+
+@media only screen and (min-width: 700px){
+    form {
+        width: 40%;
+    }
+}
+
+@media only screen and (min-width: 950px){
+    form{
+        width: 30%;
+    }
+}
+
+@media only screen and (min-width: 1100px){
+
+    .illustration{
+        display: flex;
+    }
+
+    .sign-up{
+        width: 40vw;
+    }
+
+    form{
+        width: 40%;
+    }
+
 }

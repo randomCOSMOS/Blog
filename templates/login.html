@@ -11,6 +11,12 @@
 
 <body>
 
+    <div class="back">
+        <a href="/">
+            <img src="{{url_for('static', filename='images/index.png')}}" alt="arrow">
+            <p>Home</p>
+        </a>
+    </div>
 
     <div class="illustration">
         <h1>Log In To Continue Exploration</h1>
@@ -24,10 +30,17 @@
             <label for="username">Username</label>
             <input type="text" oninvalid="invalid()" name="username" id="username" pattern="[a-z0-9_]+" tabindex="1"
                 autofocus required>
-            <p class="error">{{error}}</p>
+
+            {% if error == 'n/a' %}
+            <p class="error">Can't find that</p>
+            {% endif %}
 
             <label for="password">Password</label>
             <input type="password" minlength="5" name="password" id="password" tabindex="2" required>
+
+            {% if error == 'incorrect password' %}
+            <p class="error">Incorrect password</p>
+            {% endif %}
             <br>
             <input type="submit" value="Log In" class="submit" tabindex="3">
 

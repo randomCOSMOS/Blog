@@ -5,10 +5,10 @@ nav {
     background-attachment: fixed;
 }
 
-#body {
+/* #body {
     display: flex;
     flex-direction: row-reverse;
-}
+} */
 
 .blog{
     background-image: url("../images/puddle.jpg");

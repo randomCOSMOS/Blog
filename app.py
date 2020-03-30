@@ -28,6 +28,20 @@ loggedin = False
 name = None
 
 
+def reseq(table_name):
+    post_id = []
+    cur.execute('select id from {}'.format(table_name))
+    for id in cur.fetchall():
+        post_id.append(id[0])
+
+    if post_id:
+        max_id = max(post_id)
+    else:
+        max_id = 0
+
+    cur.execute('alter sequence {}_id_seq restart with {}'.format(table_name, max_id + 1))
+
+
 # home page
 @app.route('/')
 def home():
@@ -38,7 +52,7 @@ def home():
         latest_post = posts[-1]
     else:
         latest_post = []
-    return render_template('home.html', posts=posts, latest_post=latest_post)
+    return render_template('home.html', posts=posts, latest_post=latest_post, loggedin=loggedin)
 
 
 # posting page
@@ -47,17 +61,7 @@ def post():
     if request.method == 'GET':
         return render_template('post.html')
     else:
-        post_id = []
-        cur.execute('select id from posts')
-        for id in cur.fetchall():
-            post_id.append(id[0])
-
-        if post_id:
-            max_id = max(post_id)
-        else:
-            max_id = 0
-
-        cur.execute('alter sequence posts_id_seq restart with {}'.format(max_id + 1))
+        reseq('posts')
 
         data = request.form
         heading = data['heading']
@@ -132,18 +136,7 @@ def edit():
 @app.route('/sign', methods=['POST', 'GET'])
 def sign():
     if request.method == 'GET':
-        post_id = []
-        cur.execute('select id from users')
-        for id in cur.fetchall():
-            post_id.append(id[0])
-
-        if post_id:
-            max_id = max(post_id)
-        else:
-            max_id = 0
-
-        cur.execute('alter sequence users_id_seq restart with {}'.format(max_id + 1))
-
+        reseq('users')
         return render_template('sign.html')
     else:
         username = request.form['username']
@@ -163,6 +156,7 @@ def sign():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    global loggedin, name
     if request.method == 'GET':
         return render_template('login.html')
     else:
@@ -173,14 +167,14 @@ def login():
         user = cur.fetchall()
 
         if user:
-            if password == user[2]:
+            if password == user[0][2]:
                 loggedin = True
                 name = username
                 return redirect('/')
             else:
-                return render_template('login.html', error='Incorrect password')
+                return render_template('login.html', error='incorrect password')
         else:
-            return render_template('login.html', error='Can not find that')
+            return render_template('login.html', error='n/a')
 
 
 if __name__ == '__main__':
