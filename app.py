@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
 from os.path import join, dirname
 import psycopg2
+import json
 import os
 
 app = Flask(__name__)
@@ -133,12 +134,15 @@ def edit():
         return redirect('/manage')
 
 
+# sign in function and page
 @app.route('/sign', methods=['POST', 'GET'])
 def sign():
     if request.method == 'GET':
-        reseq('users')
         return render_template('sign.html')
     else:
+        reseq('users')
+        # data = json.loads(request.data)
+
         username = request.form['username']
         password = request.form['password']
 
@@ -154,6 +158,7 @@ def sign():
         return redirect('/')
 
 
+# log in function and page
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     global loggedin, name
@@ -175,6 +180,17 @@ def login():
                 return render_template('login.html', error='incorrect password')
         else:
             return render_template('login.html', error='n/a')
+
+
+@app.route('/test', methods=['POST'])
+def test():
+    ol = {
+        "username": "kjhkhkh",
+        "password": "kjhkj"
+    }
+    data = request.data
+    print(json.loads(data)['username'])
+    return request.data
 
 
 if __name__ == '__main__':

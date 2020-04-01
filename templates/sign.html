@@ -38,8 +38,8 @@
             <label for="password">Password</label>
             <input type="password" minlength="5" name="password" id="password" tabindex="2" required>
             <br>
-            <input type="submit" value="Sign Up" class="submit" tabindex="3">
-
+            <input type="submit" value="Sign Up" class="submit" tabindex="3"> 
+            
             <p>Already have an account? <a href="/login">Log In</a></p>
         </form>
     </div>
@@ -50,6 +50,8 @@
         }
     </script>
 
+    <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+    <script src="{{url_for('static', filename='js/logged.js')}}"></script>
 </body>
 
 </html>
