@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
 from os.path import join, dirname
 import psycopg2
@@ -62,7 +62,7 @@ def post():
     if request.method == 'GET':
         return render_template('post.html')
     else:
-        reseq('posts')
+        reseq("posts")
 
         data = request.form
         heading = data['heading']
@@ -74,7 +74,7 @@ def post():
                     (heading, subtitle, article, author))
         con.commit()
 
-        return redirect('/post')
+        return redirect('/')
 
 
 # article page
@@ -140,7 +140,7 @@ def sign():
     if request.method == 'GET':
         return render_template('sign.html')
     else:
-        reseq('users')
+        reseq("users")
         # data = json.loads(request.data)
 
         username = request.form['username']
@@ -177,7 +177,7 @@ def login():
                 loggedin = True
                 name = username
                 print('the value of login is {}'.format(loggedin))
-                return redirect('/login')
+                return redirect('/')
             else:
                 return render_template('login.html', error='incorrect password')
         else:

@@ -16,7 +16,7 @@ body {
     position: absolute;
 }
 
-.back a{
+.back a {
     color: white;
     font-family: lato;
     display: flex;
@@ -24,7 +24,7 @@ body {
     text-decoration: none;
 }
 
-.back img{
+.back img {
     width: 5%;
 }
 
@@ -141,29 +141,45 @@ form a {
     background-color: pink !important;
 }
 
-@media only screen and (min-width: 700px){
+.notice {
+    position: absolute;
+    background-color: var(--dark-);
+    background-image: url('../images/puddle2.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media only screen and (min-width: 700px) {
     form {
         width: 40%;
     }
 }
 
-@media only screen and (min-width: 950px){
-    form{
+@media only screen and (min-width: 950px) {
+    form {
         width: 30%;
     }
 }
 
-@media only screen and (min-width: 1100px){
+@media only screen and (min-width: 1100px) {
 
-    .illustration{
+    .illustration {
         display: flex;
     }
 
-    .sign-up{
+    .sign-up {
         width: 40vw;
     }
 
-    form{
+    form {
         width: 40%;
     }
 
