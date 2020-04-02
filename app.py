@@ -175,7 +175,7 @@ def login():
             if password == user[0][2]:
                 loggedin = True
                 name = username
-                return redirect('/')
+                return redirect('/login')
             else:
                 return render_template('login.html', error='incorrect password')
         else:
@@ -191,6 +191,15 @@ def test():
     data = request.data
     print(json.loads(data)['username'])
     return request.data
+
+
+@app.route('/l')
+def if_logged():
+    global loggedin
+    if loggedin:
+        return "TRUE"
+    else:
+        return 'FALSE'
 
 
 if __name__ == '__main__':

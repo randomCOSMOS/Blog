@@ -15,3 +15,11 @@ async function test() {
     const t = await r.json();
     console.log(t)
 }
+
+window.addEventListener('keydown',  async (e) => {
+    if (e.key === 'l'){
+        const response = await fetch('/l');
+        const text = await response.text();
+        console.log(text);
+    }
+});
