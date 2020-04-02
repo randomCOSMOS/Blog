@@ -163,6 +163,7 @@ def sign():
 def login():
     global loggedin, name
     if request.method == 'GET':
+        print('the value of login is {}'.format(loggedin))
         return render_template('login.html')
     else:
         username = request.form['username']
@@ -175,6 +176,7 @@ def login():
             if password == user[0][2]:
                 loggedin = True
                 name = username
+                print('the value of login is {}'.format(loggedin))
                 return redirect('/login')
             else:
                 return render_template('login.html', error='incorrect password')
