@@ -2,7 +2,7 @@ async function test() {
     let form = {
         username: $('#username').val(),
         password: $('#password').val()
-    }
+    };
 
     const options = {
         method: 'POST',

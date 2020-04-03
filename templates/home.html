@@ -6,60 +6,54 @@
 {% endblock %}
 
 {% block body %}
-<div class="blog">
-    <header>
-        <div>
-            <h1>Blog Posts</h1>
-            <p>Check out all the posts by our various blogger.</p>
-        </div>
-    </header>
-
-    {% if posts|length < 1 %}
-    <h2>Sorry no posts. 😔</h2>
-
-    {% else %}
-    <div class="latest-post">
-        {% set id = latest_post[0] %}
-        {% set heading = latest_post[1] %}
-        {% set article = latest_post[3] %}
-        {% set author = latest_post[4] %}
-        {% set date = latest_post[5] %}
-
-        <a href="/article/{{id}}">
-            <p>FEATURED</p>
-            <p>{{ date }}</p>
-            <h2>{{ heading }}</h2>
-            <hr>
-            <article>{{ article }}</article>
-            <address>By {{ author }}</address>
-        </a>
+<header>
+    <div>
+        <h1>Blog Posts</h1>
+        <p>Check out all the posts by our various blogger.</p>
     </div>
+</header>
 
-    <div class="post">
-        <p>Latest posts</p>
-        {% for post in posts %}
+{% if posts|length < 1 %}
+<h2>Sorry no posts. 😔</h2>
 
-        {% set id = post[0] %}
-        {% set heading = post[1] %}
-        {% set subtitle = post[2] %}
-        {% set author = post[4] %}
-        {% set date = post[5] %}
+{% else %}
+<div class="latest-post">
+    {% set id = latest_post[0] %}
+    {% set heading = latest_post[1] %}
+    {% set article = latest_post[3] %}
+    {% set author = latest_post[4] %}
+    {% set date = latest_post[5] %}
 
-        <a href="/article/{{ id }}">
-            <div class="preview">
-                <p>{{ post[5] }}</p>
-                <h2>{{ heading }}</h2>
-                <h3>{{ subtitle }}</h3>
-                <cite>By <b>{{ author }}</b></cite>
-            </div>
-        </a>
-        {% endfor %}
-    </div>
-
-    {% endif %}
+    <a href="/article/{{id}}">
+        <p>FEATURED</p>
+        <p>{{ date }}</p>
+        <h2>{{ heading }}</h2>
+        <hr>
+        <article>{{ article }}</article>
+        <address>By {{ author }}</address>
+    </a>
 </div>
 
-    <!-- <div class="sidemenu">
+<div class="post">
+    <p>Latest posts</p>
+    {% for post in posts %}
 
-    </div> -->
+    {% set id = post[0] %}
+    {% set heading = post[1] %}
+    {% set subtitle = post[2] %}
+    {% set author = post[4] %}
+    {% set date = post[5] %}
+
+    <a href="/article/{{ id }}">
+        <div class="preview">
+            <p>{{ post[5] }}</p>
+            <h2>{{ heading }}</h2>
+            <h3>{{ subtitle }}</h3>
+            <cite>By <b>{{ author }}</b></cite>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endif %}
 {% endblock %}

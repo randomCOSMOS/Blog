@@ -24,7 +24,9 @@
             <h2>Navigation</h2>
             <a href="/">Home</a>
             <a href="/post">Add post</a>
-            {% if loggedin %}
+            {% if loggedin == "o" %}
+            <a href="/signout">Sign Out</a>
+            {% elif loggedin %}
             <a href="/manage">Manage</a>
             {% else %}
             <a href="/sign">Sign Up</a>

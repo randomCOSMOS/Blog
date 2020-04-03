@@ -15,16 +15,16 @@
 
 <form action="/post" method="post">
     <label for="heading">Heading </label>
-    <input type="text" name="heading" id="heading" tabindex="1">
+    <input type="text" name="heading" id="heading" tabindex="1" autofocus required>
 
     <label for="subtitle">Subtitle</label>
     <input type="text" name="subtitle" id="subtitle" tabindex="2">
 
     <label for="article">Article</label>
-    <textarea name="article" id="article" rows="10" tabindex="3"></textarea>
+    <textarea name="article" id="article" rows="10" tabindex="3" required></textarea>
 
     <label for="author">Author</label>
-    <input type="text" name="author" id="author">
+    <input type="text" name="author" id="author" tabindex="4" required>
     <br>
     <input type="submit" value="SUBMIT" tabindex="5">
 </form>

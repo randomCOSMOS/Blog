@@ -5,12 +5,7 @@ nav {
     background-attachment: fixed;
 }
 
-/* #body {
-    display: flex;
-    flex-direction: row-reverse;
-} */
-
-.blog{
+body{
     background-image: url("../images/puddle.jpg");
     background-position: center;
     background-size: cover;
@@ -50,7 +45,7 @@ header div p {
 #body>h2 {
     color: white;
     text-align: center;
-    font-size: 4rem;
+    font-size: 4rem; 
 }
 
 .latest-post {
