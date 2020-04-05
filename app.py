@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from dotenv import load_dotenv
 from os.path import join, dirname
 import psycopg2
-import socket
 import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'username'
 
 # connecting to database
 dotenv_path = join(dirname(__file__), '.env')
@@ -25,11 +25,7 @@ else:
 
 cur = con.cursor()
 
-hostname = socket.gethostname()
-ip = socket.gethostbyname(hostname)
-
-loggedin = False
-user = None
+user_name = None
 
 
 def reseq(table_name):
@@ -49,31 +45,21 @@ def reseq(table_name):
 # home page
 @app.route('/')
 def home():
-    global loggedin, user
-    loggedin = False
-    user = None
-    cur.execute('select * from iplist')
-    ip_addresses = cur.fetchall()
-    for ip_address in ip_addresses:
-        if ip == ip_address[1]:
-            loggedin = True
-            user = ip_address[2]
-    print(loggedin, user)
-
     cur.execute('select * from posts')
     posts = cur.fetchall()
+    print(session)
     if posts:
         latest_post = posts[-1]
     else:
         latest_post = []
-    return render_template('home.html', posts=posts, latest_post=latest_post, loggedin=loggedin)
+    return render_template('home.html', posts=posts, latest_post=latest_post)
 
 
 # posting page
 @app.route('/post', methods=['POST', 'GET'])
 def post():
     if request.method == 'GET':
-        return render_template('post.html', loggedin=loggedin)
+        return render_template('post.html')
     else:
         reseq("posts")
 
@@ -81,7 +67,7 @@ def post():
         heading = data['heading']
         subtitle = data['subtitle']
         article = data['article']
-        author = user
+        author = username
 
         cur.execute('insert into posts ("heading", "subtitle", "article", "author") values (%s, %s, %s, %s)',
                     (heading, subtitle, article, author))
@@ -96,7 +82,7 @@ def ok(id):
     cur.execute('select article from posts where id={}'.format(id))
     article = cur.fetchall()
 
-    return render_template('article.html', article=article[0][0], loggedin=loggedin)
+    return render_template('article.html', article=article[0][0])
 
 
 # manage page
@@ -104,7 +90,7 @@ def ok(id):
 def manage():
     cur.execute('select * from posts')
     posts = cur.fetchall()
-    return render_template('manage.html', posts=posts, loggedin="o")
+    return render_template('manage.html', posts=posts, sign='out')
 
 
 # delete function
@@ -144,10 +130,8 @@ def sign():
     if request.method == 'GET':
         return render_template('sign.html')
     else:
-        reseq("iplist")
         reseq("users")
 
-        global ip
         username = request.form['username']
         password = request.form['password']
 
@@ -159,8 +143,8 @@ def sign():
             return render_template('sign.html', error=True)
         else:
             cur.execute('insert into users (name, password) values (%s,%s)', (username, password))
-            cur.execute('insert into iplist (ip,name) values (%s, %s)', (ip, username))
             con.commit()
+            session['active_user'] = username
         return redirect('/')
 
 
@@ -170,7 +154,6 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        global ip
         username = request.form['username']
         password = request.form['password']
 
@@ -179,8 +162,7 @@ def login():
 
         if users:
             if password == users[0][2]:
-                cur.execute('insert into iplist (ip,name) values (%s, %s)', (ip, username))
-                con.commit()
+                session['active_user'] = username
                 return redirect('/')
             else:
                 return render_template('login.html', error='incorrect password')
@@ -191,24 +173,13 @@ def login():
 # sign out function
 @app.route('/signout')
 def signout():
-    global ip
-    cur.execute('delete from iplist where ip=%s', [ip])
-    con.commit()
+    session.pop('active_user', None)
     return redirect('/')
 
 
 @app.route('/test')
 def test():
     return request.data
-
-
-@app.route('/l')
-def if_logged():
-    global loggedin
-    if loggedin:
-        return "TRUE", user
-    else:
-        return 'FALSE'
 
 
 if __name__ == '__main__':

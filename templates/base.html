@@ -10,6 +10,8 @@
     {% block head %}{% endblock %}
 </head>
 
+{% set active_user = session['active_user'] %}
+
 <body>
     <nav>
         <a href="/">
@@ -24,9 +26,9 @@
             <h2>Navigation</h2>
             <a href="/">Home</a>
             <a href="/post">Add post</a>
-            {% if loggedin == "o" %}
+            {% if sign == "out" %}
             <a href="/signout">Sign Out</a>
-            {% elif loggedin %}
+            {% elif active_user %}
             <a href="/manage">Manage</a>
             {% else %}
             <a href="/sign">Sign Up</a>
