@@ -13,6 +13,7 @@
     <h3>You can create your BLOG post here</h3>
 </header>
 
+{% if active_user %}
 <form action="/post" method="post">
     <label for="heading">Heading </label>
     <input type="text" name="heading" id="heading" tabindex="1" autofocus required>
@@ -28,5 +29,17 @@
     <br>
     <input type="submit" value="SUBMIT" tabindex="5">
 </form>
+{% else %}
+<div class="not-active">
+    <h2>It seems like you haven't signed</h2>
+    <p>Please chose an option to continue</p>
+    <a href="/sign">
+        <input type="button" value="Sign Up">
+    </a>
+    <a href="/login">
+        <input type="button" value="Log In">
+    </a>
+</div>
+{% endif %}
 
 {% endblock %}

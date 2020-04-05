@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, make_response
 from dotenv import load_dotenv
 from os.path import join, dirname
+import datetime
 import psycopg2
 import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'username'
+app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=365)
 
 # connecting to database
 dotenv_path = join(dirname(__file__), '.env')
@@ -40,6 +42,11 @@ def reseq(table_name):
         max_id = 0
 
     cur.execute('alter sequence {}_id_seq restart with {}'.format(table_name, max_id + 1))
+
+
+# @app.before_request
+# def permanent_session():
+#     session.permanent = True
 
 
 # home page
@@ -83,6 +90,13 @@ def ok(id):
     article = cur.fetchall()
 
     return render_template('article.html', article=article[0][0])
+
+
+@app.route('/make')
+def make():
+    resp = make_response(render_template('pass.html'))
+    resp.set_cookie('night', "oopppss", max_age=2 * 60)
+    return resp
 
 
 # manage page
@@ -144,6 +158,7 @@ def sign():
         else:
             cur.execute('insert into users (name, password) values (%s,%s)', (username, password))
             con.commit()
+            session.permanent = True
             session['active_user'] = username
         return redirect('/')
 
@@ -162,6 +177,7 @@ def login():
 
         if users:
             if password == users[0][2]:
+                session.permanent = True
                 session['active_user'] = username
                 return redirect('/')
             else:
@@ -183,4 +199,4 @@ def test():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, port=3000)
+    app.run(debug=True, port=3000)
