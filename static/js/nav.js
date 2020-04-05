@@ -3,7 +3,12 @@ $('.hamburger').click(() => {
     $('nav div').toggleClass('show');
 });
 
-// var loc = window.location.href + '';
-// if (loc.indexOf('http://') == 0) {
-//     window.location.href = loc.replace('http://', 'https://');
-// }
+let op = window.location.href;
+console.log(op.indexOf('localhost'));
+
+if ((window.location.href).indexOf('localhost') !== 7) {
+    let loc = window.location.href + '';
+    if (loc.indexOf('http://') === 0) {
+        window.location.href = loc.replace('http://', 'https://');
+    }
+}
