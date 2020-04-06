@@ -44,17 +44,18 @@ def reseq(table_name):
     cur.execute('alter sequence {}_id_seq restart with {}'.format(table_name, max_id + 1))
 
 
-# @app.before_request
-# def permanent_session():
-#     session.permanent = True
-
-
 # home page
 @app.route('/')
 def home():
+    global user_name
     cur.execute('select * from posts')
     posts = cur.fetchall()
-    print(session)
+    if session['active_user']:
+        user_name = session['active_user']
+        print('active user active')
+    else:
+        user_name = None
+        print('active usr not active')
     if posts:
         latest_post = posts[-1]
     else:
@@ -74,7 +75,7 @@ def post():
         heading = data['heading']
         subtitle = data['subtitle']
         article = data['article']
-        author = username
+        author = user_name
 
         cur.execute('insert into posts ("heading", "subtitle", "article", "author") values (%s, %s, %s, %s)',
                     (heading, subtitle, article, author))
