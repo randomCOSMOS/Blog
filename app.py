@@ -50,12 +50,13 @@ def home():
     global user_name
     cur.execute('select * from posts')
     posts = cur.fetchall()
-    if session['active_user']:
+    print(len(session) > 1)
+    if len(session) > 1:
         user_name = session['active_user']
         print('active user active')
     else:
         user_name = None
-        print('active usr not active')
+        print('active user not active')
     if posts:
         latest_post = posts[-1]
     else:
@@ -103,7 +104,7 @@ def make():
 # manage page
 @app.route('/manage')
 def manage():
-    cur.execute('select * from posts')
+    cur.execute('select * from posts where author=%s', [user_name])
     posts = cur.fetchall()
     return render_template('manage.html', posts=posts, sign='out')
 
