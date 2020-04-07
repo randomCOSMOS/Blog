@@ -50,13 +50,10 @@ def home():
     global user_name
     cur.execute('select * from posts')
     posts = cur.fetchall()
-    print(len(session) > 1)
     if len(session) > 1:
         user_name = session['active_user']
-        print('active user active')
     else:
         user_name = None
-        print('active user not active')
     if posts:
         latest_post = posts[-1]
     else:
@@ -150,8 +147,6 @@ def sign():
 
         username = request.form['username']
         password = request.form['password']
-
-        print(username, password)
 
         cur.execute('select * from users where name=%s', [username])
         user = cur.fetchall()
