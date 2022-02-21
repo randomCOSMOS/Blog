@@ -1,6 +1,6 @@
 
 Click==8.0.1
-Click==7.1.2
+Click==8.0.4
 Flask==1.1.2
 gunicorn==20.1.0
 itsdangerous==1.1.0
