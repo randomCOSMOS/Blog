@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, session, make_response
-from dotenv import load_dotenv
 from os.path import join, dirname
-import datetime
+from dotenv import load_dotenv
 import psycopg2
+import datetime
 import os
 
 app = Flask(__name__)
@@ -50,6 +50,7 @@ def home():
     global user_name
     cur.execute('select * from posts')
     posts = cur.fetchall()
+    posts.reverse()
     if len(session) > 1:
         user_name = session['active_user']
     else:
@@ -85,10 +86,9 @@ def post():
 # article page
 @app.route('/article/<id>')
 def ok(id):
-    cur.execute('select article from posts where id={}'.format(id))
+    cur.execute('select * from posts where id={}'.format(id))
     article = cur.fetchall()
-
-    return render_template('article.html', article=article[0][0])
+    return render_template('article.html', article=article[0])
 
 
 @app.route('/make')
@@ -157,7 +157,7 @@ def sign():
             con.commit()
             session.permanent = True
             session['active_user'] = username
-        return redirect('/')
+            return redirect('/')
 
 
 # log in function and page
@@ -193,7 +193,6 @@ def signout():
 @app.route('/test')
 def test():
     return request.data
-
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

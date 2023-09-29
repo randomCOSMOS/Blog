@@ -14,13 +14,14 @@ body{
 
 header {
     position: relative;
-    background-image: url("../images/blog.jpg");
+    background-image: url("../images/op.jpg");
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     height: 60vh;
     display: flex;
     align-items: center;
+    
 }
 
 header div {
@@ -90,7 +91,7 @@ hr {
     font-weight: bold;
     color: var(--light-grey);
     font-size: 1rem;
-    font-family: 'lato';
+    font-family: lato;
     margin: 10px 15px;
 }
 

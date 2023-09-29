@@ -1,5 +1,6 @@
 # Blog
-A flask blog app
+A flask blog app.
+https://cos-blog.herokuapp.com
 
 # Initilize
 1) Create virtual environment.
