@@ -76,8 +76,7 @@ def post():
         article = data['article']
         author = user_name
 
-        cur.execute('insert into posts ("heading", "subtitle", "article", "author") values (%s, %s, %s, %s)',
-                    (heading, subtitle, article, author))
+        cur.execute('insert into posts ("heading", "subtitle", "article", "author") values (%s, %s, %s, %s)',(heading, subtitle, article, author))
         con.commit()
 
         return redirect('/')
@@ -131,8 +130,7 @@ def edit():
         article = data['article']
         author = data['author']
 
-        cur.execute('update posts set heading=%s, subtitle=%s, article=%s, author=%s where id=%s',
-                    (heading, subtitle, article, author, id))
+        cur.execute('update posts set heading=%s, subtitle=%s, article=%s, author=%s where id=%s', (heading, subtitle, article, author, id))
         con.commit()
         return redirect('/manage')
 
@@ -193,6 +191,7 @@ def signout():
 @app.route('/test')
 def test():
     return request.data
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
